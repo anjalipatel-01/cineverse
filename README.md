@@ -66,251 +66,27 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Build for Production
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-```bash
-npm run build
-npm start
-```
+[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-## 🎯 Data Domain: Movies
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
 
-### Why Movies?
-1. **Rich Structured Data**: Movies have well-defined Schema.org types with multiple properties
-2. **High SEO Potential**: Clear keyword opportunities (movie reviews, ratings, cast info)
-3. **Compelling UI**: Allows for visually engaging cards with posters, ratings, and metadata
-4. **Relatable Content**: Universal appeal makes the demo intuitive to understand
+This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### Data Structure
+## Learn More
 
-```javascript
-{
-  id: string,           // Unique identifier
-  slug: string,         // SEO-friendly URL slug
-  title: string,        // Movie title
-  releaseYear: number,  // Year of release
-  genre: string[],      // Array of genres
-  director: string,     // Director name
-  cast: string[],       // Array of cast members
-  rating: number,       // Rating out of 10
-  runtime: number,      // Duration in minutes
-  description: string,  // Short description
-  plot: string,         // Full plot summary
-  posterUrl: string     // Poster image URL
-}
-```
+To learn more about Next.js, take a look at the following resources:
 
-### Movies Included
-1. The Shawshank Redemption (1994)
-2. Inception (2010)
-3. The Dark Knight (2008)
-4. Pulp Fiction (1994)
-5. Forrest Gump (1994)
-6. The Godfather (1972)
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
 
-## 🔄 Server-Side Rendering (SSR)
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### Implementation
+## Deploy on Vercel
 
-All pages use `getServerSideProps` exclusively (no `getStaticProps` or client-side rendering):
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-```javascript
-// pages/movies/[slug].js
-export async function getServerSideProps(context) {
-  const { slug } = context.params;
-  const movie = getMovieBySlug(slug);
-  
-  if (!movie) {
-    return { notFound: true };
-  }
-  
-  return {
-    props: { movie }
-  };
-}
-```
-
-### Why SSR?
-- **Fresh Data**: Content is fetched on each request
-- **SEO Benefits**: Full HTML returned to crawlers on first request
-- **Dynamic Content**: Perfect for personalized or frequently updated content
-- **No Build-Time Dependencies**: Pages work with any data source
-
-### Verification
-1. View page source (Ctrl+U) on any movie page
-2. Verify all movie content is present in the initial HTML
-3. Check Network tab - HTML response contains full content
-
-## 🔍 SEO Implementation
-
-### 1. Dynamic Title Tags
-```html
-<title>Inception (2010) - Review & Rating | CineVerse</title>
-```
-
-### 2. Meta Description
-```html
-<meta name="description" content="Inception (2010) - A thief who steals corporate secrets through dream-sharing technology..." />
-```
-
-### 3. OpenGraph Tags
-```html
-<meta property="og:type" content="video.movie" />
-<meta property="og:title" content="Inception (2010) - Review & Rating | CineVerse" />
-<meta property="og:description" content="..." />
-<meta property="og:image" content="/images/inception.jpg" />
-```
-
-### 4. JSON-LD Structured Data
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "Movie",
-  "name": "Inception",
-  "description": "A thief who steals corporate secrets...",
-  "datePublished": "2010",
-  "genre": ["Sci-Fi", "Action", "Thriller"],
-  "director": {
-    "@type": "Person",
-    "name": "Christopher Nolan"
-  },
-  "actor": [
-    { "@type": "Person", "name": "Leonardo DiCaprio" }
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "8.8",
-    "bestRating": "10"
-  }
-}
-```
-
-### 5. SEO-Friendly URLs
-- `/movies/the-shawshank-redemption`
-- `/movies/inception`
-- `/movies/the-dark-knight`
-
-### 6. Semantic Headings
-- `<h1>`: Movie title (one per page)
-- `<h2>`: Section titles (Plot Summary, Cast & Crew)
-- `<h3>`: Subsection titles (Director, Top Cast)
-
-## 📊 Keyword Research
-
-### Research Tools Used
-- **Google Keyword Planner**: For search volume and competition data
-- **Ubersuggest**: For long-tail keyword suggestions
-- **Google Trends**: For seasonal search patterns
-
-### Target Keywords (10)
-
-| Keyword | Volume | Difficulty | Usage |
-|---------|--------|------------|-------|
-| movie reviews | High | High | Homepage title, meta |
-| best movies to watch | High | Medium | Homepage hero, description |
-| [movie title] review | Medium | Low | Movie page title |
-| [movie title] rating | Medium | Low | Movie page content |
-| [movie title] cast | Medium | Low | Movie page headings |
-| top rated movies 2024 | High | Medium | Homepage content |
-| classic movies to watch | Medium | Low | Genre filtering |
-| [director] movies | Medium | Low | Movie page content |
-| [actor name] movies | Medium | Low | Cast section |
-| movie recommendations | High | Medium | Related movies section |
-
-### Keyword Placement Strategy
-
-1. **Title Tags**: Primary keyword + movie name + brand
-   - Example: "Inception (2010) - Review & Rating | CineVerse"
-
-2. **Meta Descriptions**: Natural inclusion of secondary keywords
-   - Example: "Watch Inception... Rating: 8.8/10. Discover why it's a must-see film."
-
-3. **H1 Headings**: Movie title (exact match for movie-specific searches)
-   - Example: "Inception"
-
-4. **H2 Headings**: Section keywords
-   - "Plot Summary", "Cast & Crew", "Movie Details"
-
-5. **Body Content**: Natural keyword density
-   - Director name, cast names, genre terms, rating mentions
-
-## 🎨 UI/UX Design
-
-### Design Principles
-- **Dark Theme**: Modern, cinema-inspired aesthetic
-- **Glassmorphism**: Subtle transparency effects
-- **Micro-Animations**: Hover effects, transitions
-- **Responsive Grid**: Adapts from mobile to desktop
-
-### Features
-- Responsive movie card grid
-- Hero section with gradient backgrounds
-- Star ratings with visual indicators
-- Genre tags with color coding
-- Related movies suggestions
-- Breadcrumb navigation
-
-### Responsive Breakpoints
-- Mobile: < 480px
-- Tablet: 480px - 768px
-- Desktop: > 768px
-
-## 🚀 Deployment (Vercel)
-
-### Steps
-
-1. **Push to GitHub**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git remote add origin <your-repo-url>
-   git push -u origin main
-   ```
-
-2. **Deploy on Vercel**
-   - Go to [vercel.com](https://vercel.com)
-   - Import your GitHub repository
-   - Vercel auto-detects Next.js
-   - Click "Deploy"
-
-3. **Environment Variables** (if needed)
-   - Add in Vercel dashboard under Settings > Environment Variables
-
-### Vercel Features Used
-- Automatic SSR support
-- Edge caching for static assets
-- Automatic HTTPS
-- Preview deployments for PRs
-
-## ✅ Verification Checklist
-
-- [x] SSR with `getServerSideProps` (no `getStaticProps`)
-- [x] Dynamic `<title>` tags on all pages
-- [x] Dynamic meta descriptions
-- [x] OpenGraph metadata (og:title, og:description, og:image)
-- [x] JSON-LD structured data (Movie schema)
-- [x] SEO-friendly URLs (/movies/[slug])
-- [x] Proper heading hierarchy (h1, h2, h3)
-- [x] 6 dynamic movie pages (exceeds minimum of 3)
-- [x] Responsive design (mobile + desktop)
-- [x] Clean project structure
-- [x] Well-commented code
-
-## 📝 Architecture Decisions
-
-1. **JavaScript over TypeScript**: Chosen for simplicity and faster development
-2. **CSS Modules over Tailwind**: More explicit styling, no additional dependencies
-3. **Local JSON over API**: Eliminates external dependencies, ensures reliability
-4. **Single SEO Component**: Centralized, reusable metadata management
-5. **Service Layer**: Separation of concerns between data and presentation
-
-## 📜 License
-
-This project is created for assessment purposes.
-
----
-
-Built with ❤️ using Next.js
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
