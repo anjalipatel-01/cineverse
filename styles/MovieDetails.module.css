@@ -1,0 +1,276 @@
+/**
+ * MovieDetails Component Styles
+ */
+
+.details {
+    background: var(--color-bg-dark);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.backdrop {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center top;
+    opacity: 0.15;
+    filter: blur(20px);
+    transform: scale(1.1);
+}
+
+.heroContent {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    display: flex;
+    gap: var(--spacing-2xl);
+    align-items: flex-start;
+}
+
+.posterContainer {
+    flex-shrink: 0;
+}
+
+.poster {
+    width: 300px;
+    aspect-ratio: 2/3;
+    border-radius: var(--radius-xl);
+    background-size: cover;
+    background-position: center;
+    background-color: var(--color-bg-elevated);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.posterFallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg-card) 100%);
+    font-size: 5rem;
+    opacity: 0.3;
+}
+
+.heroInfo {
+    flex: 1;
+    padding-top: var(--spacing-lg);
+}
+
+.title {
+    font-size: var(--font-size-4xl);
+    font-weight: 800;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.2;
+    color: var(--color-text-primary);
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+}
+
+.separator {
+    opacity: 0.5;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-weight: 600;
+}
+
+.star {
+    color: var(--color-accent);
+    font-size: var(--font-size-lg);
+}
+
+.genres {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.genre {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: white;
+}
+
+.tagline {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+}
+
+/* Content Section */
+.content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+}
+
+.section {
+    margin-bottom: var(--spacing-2xl);
+    padding: var(--spacing-xl);
+    background: var(--color-bg-card);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+}
+
+.sectionTitle {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text-primary);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.plot {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+}
+
+/* Cast & Crew */
+.crewGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.crewItem {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.crewLabel {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.crewName {
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+.castList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.castMember {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+}
+
+/* Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md);
+    background: var(--color-bg-elevated);
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+
+.statLabel {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.statValue {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto;
+    }
+
+    .heroContent {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .poster {
+        width: 200px;
+    }
+
+    .heroInfo {
+        padding-top: var(--spacing-md);
+    }
+
+    .title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .meta {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .genres {
+        justify-content: center;
+    }
+
+    .tagline {
+        font-size: var(--font-size-base);
+    }
+
+    .content {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .section {
+        padding: var(--spacing-md);
+    }
+
+    .crewGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
