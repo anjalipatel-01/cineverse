@@ -1,4 +1,4 @@
-# CineVerse - Next.js SSR SEO Assessment Project
+# CineVerse - Next.js SEO Project
 
 A server-side rendered Next.js website demonstrating programmatic SEO pages for movies.
 
