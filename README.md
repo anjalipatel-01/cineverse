@@ -50,7 +50,7 @@ cineverse/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18.x or later
+- Node.js 18.x 
 - npm or yarn
 
 ### Installation
